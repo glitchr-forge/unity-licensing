@@ -45,5 +45,5 @@ whose licence does not cover it, refused too (403).
 ## From Git
 
 ```json
-"io.glitchr.licensing": "https://github.com/glitchr-studio/unity-licensing.git#1.0.0"
+"io.glitchr.licensing": "https://github.com/glitchr-forge/unity-licensing.git#1.0.0"
 ```

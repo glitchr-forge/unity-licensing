@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 namespace Glitchr.Licensing
 {
     /// <summary>
-    /// A Glitch Art forge licence, from the game: activate this machine with the player's key
+    /// A Forge licence (Forge Seal), from the game: activate this machine with the player's key
     /// (and get a signed token to run offline until it expires), free the machine's place, fetch
     /// the forge's public key. Calls <c>POST /api/licenses/activate</c>, <c>POST
     /// /api/licenses/release</c> and <c>GET /api/licenses/public-key</c> of the site; the token

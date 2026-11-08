@@ -1,6 +1,6 @@
-# Glitch Art Licensing
+# Forge Seal
 
-A Unity package that lets a game or an application sold on a Glitch Art forge
+Forge Seal (`io.glitchr.licensing`) lets a game or an application sold on a Forge store
 check its licence: it activates the player's machine with their licence key,
 keeps the signed token the forge answers with, and checks that token offline
 at each start - no server call until it expires.
@@ -31,7 +31,7 @@ The package is served by the forge's Unity registry. In the project's
 ```
 
 Then **Window > Package Manager > My Registries** lists it. It can also be
-added from its Git URL: `https://github.com/glitchr-studio/unity-licensing.git`.
+added from its Git URL: `https://github.com/glitchr-forge/unity-licensing.git`.
 See [docs/installation.md](docs/installation.md).
 
 ## Usage
