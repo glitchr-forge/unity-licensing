@@ -1,0 +1,32 @@
+{
+ "first": "Forge",
+ "second": "Seal",
+ "join": false,
+ "tagline": "Licences checked offline",
+ "icon": "seal.png",
+ "gradient": [
+  "#ff6a5c",
+  "#ff9a8c",
+  "#ffd0c6"
+ ],
+ "summary": [
+  "Licences sold on any Forge store,",
+  "signed with Ed25519, activated once",
+  "and checked offline by your game."
+ ],
+ "packageName": "Forge Seal - Licence Checks for Unity Games and Packages",
+ "summaryText": "Forge Seal (io.glitchr.licensing) checks the licence of a game, an application or a package sold on any Forge store: a key signed with Ed25519, activated once and verified offline against the store's public key. Light protection, not DRM.",
+ "background": [
+  "#6e1c26",
+  "#240a0e"
+ ],
+ "file": "Forge Seal",
+ "twoLines": false,
+ "iconTagline": false,
+ "iconBox": [
+  48,
+  80,
+  91
+ ],
+ "iconTwoLines": true
+}

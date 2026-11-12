@@ -1,0 +1,1 @@
+Forge Seal (io.glitchr.licensing) checks the licence of a game, an application or a package sold on any Forge store: a key signed with Ed25519, activated once and verified offline against the store's public key. Light protection, not DRM.
