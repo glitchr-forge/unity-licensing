@@ -50,6 +50,57 @@ LicensePayload licence = client.Check(storedToken);
 Null when the token is not the forge's, is another software's or another
 machine's, or has passed its `valid_until`. Then activate again, online.
 
+## Bound to the store
+
+Tokens of format 2 name their store's registry and, for a Unity package, the
+package (see [token.md](token.md)). Set the client's registry - the hub
+manifest's `licensing.registry` - and a token another store signed is refused,
+whatever it says:
+
+```csharp
+var client = new LicenseClient(siteUrl, softwareSlug, publicKey) { Registry = "https://glitchr.io/upm" };
+// a Unity package: client.Package = "com.example.tool"; a game or an application: leave it null.
+```
+
+`Check` and `ActivateAsync` then use the bound check; a format 1 token (one
+signed before the forge bound them) is refused: activate again, online.
+
+## A package's licence, in the editor
+
+A Unity package sold by a store checks itself in the editor. On a static hub,
+its buyer pastes the licence its seller gave them into Forge Store, which
+checks it against the store's pinned key, the registry and the package, and
+keeps it for that user in `Forge Store/licences.json` (local application
+data, never the project). The package reads it back and checks it with the
+public key it ships:
+
+```csharp
+#if UNITY_EDITOR
+LicensePayload licence = PackageLicence.Check("https://owner.github.io/hub", "com.example.tool", PublicKey, out string refusal);
+if (licence == null)
+{
+    // refusal: no_licence (none pasted yet), wrong_registry, wrong_package,
+    // wrong_machine, expired, not_genuine, unbound
+}
+#endif
+```
+
+The machine is `SystemInfo.deviceUniqueIdentifier`; a licence that names
+none runs on any machine, one without `valid_until` has no end.
+`PackageLicence.Token(registry, package)` gives the kept token alone. After
+the store changes its key, release the package with the new key (or check
+with both).
+
+## A game sold by a static hub
+
+A game has no Forge to activate against: the player pastes the licence into
+the game, which keeps it where it likes and checks it at each start:
+
+```csharp
+LicensePayload licence = LicenseToken.Check(token, PublicKey, "my-game", SystemInfo.deviceUniqueIdentifier,
+    "https://owner.github.io/hub", null, out string refusal);
+```
+
 ## Freeing the machine
 
 ```csharp

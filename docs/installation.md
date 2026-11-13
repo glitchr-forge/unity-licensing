@@ -20,7 +20,7 @@ Then **Window > Package Manager**, **My Registries**: the free packages are
 listed; select one and **Install**. Or add it to `dependencies` by hand:
 
 ```json
-"io.glitchr.licensing": "1.0.0"
+"io.glitchr.licensing": "1.1.0"
 ```
 
 A new version published on the forge shows up as an update in the same
@@ -45,5 +45,5 @@ whose licence does not cover it, refused too (403).
 ## From Git
 
 ```json
-"io.glitchr.licensing": "https://github.com/glitchr-forge/unity-licensing.git#1.0.0"
+"io.glitchr.licensing": "https://github.com/glitchr-forge/unity-licensing.git#1.1.0"
 ```

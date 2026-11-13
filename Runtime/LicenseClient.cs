@@ -30,6 +30,16 @@ namespace Glitchr.Licensing
         /// <summary>The forge's public key (base64): ship it with the game rather than fetching it.</summary>
         public string PublicKey { get; }
 
+        /// <summary>
+        /// The store's registry (the hub manifest's <c>licensing.registry</c>, <c>https://&lt;site&gt;/upm</c>):
+        /// when set, a token is also bound to it - a format 2 token of this registry and of
+        /// <see cref="Package"/> - and a token another store signed is refused. Null: not checked.
+        /// </summary>
+        public string Registry { get; set; }
+
+        /// <summary>With <see cref="Registry"/>: the Unity package the licence covers; null for a game or an application.</summary>
+        public string Package { get; set; }
+
         /// <summary>A stable identifier of this machine. <see cref="SystemInfo.deviceUniqueIdentifier"/> by default.</summary>
         public Func<string> MachineIdentifier { get; set; } = () => SystemInfo.deviceUniqueIdentifier;
 
@@ -82,7 +92,7 @@ namespace Glitchr.Licensing
             };
             if (answer.Status == 200 && response.status == "active")
             {
-                result.License = LicenseToken.Check(response.token, PublicKey, Software, body.machine);
+                result.License = CheckToken(response.token, body.machine);
                 if (result.License == null)
                 {
                     result.Error = "token_not_genuine";
@@ -99,7 +109,14 @@ namespace Glitchr.Licensing
         /// <summary>Whether a stored token still lets the game run here, offline.</summary>
         public LicensePayload Check(string token)
         {
-            return LicenseToken.Check(token, PublicKey, Software, MachineIdentifier());
+            return CheckToken(token, MachineIdentifier());
+        }
+
+        private LicensePayload CheckToken(string token, string machine)
+        {
+            return string.IsNullOrEmpty(Registry)
+                ? LicenseToken.Check(token, PublicKey, Software, machine)
+                : LicenseToken.Check(token, PublicKey, Software, machine, Registry, Package);
         }
 
         /// <summary>Frees this machine's place (an uninstall, a "deactivate" menu). True: it held one.</summary>

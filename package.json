@@ -1,8 +1,8 @@
 {
   "name": "io.glitchr.licensing",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "displayName": "Forge Seal",
-  "description": "Activates and releases a Forge licence from a Unity game or application, and checks the signed token offline (Ed25519, managed code).",
+  "description": "Activates and releases a Forge licence from a Unity game or application, and checks the signed token offline (Ed25519, managed code): bound to its store's registry and package, or an offline licence a static hub's author signed, which a licensed package reads from Forge Store.",
   "unity": "2021.3",
   "documentationUrl": "https://github.com/glitchr-forge/unity-licensing#readme",
   "changelogUrl": "https://github.com/glitchr-forge/unity-licensing/blob/main/CHANGELOG.md",
